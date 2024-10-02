@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>ARGUS</title>
+</head>
+<body>
+    <h1>ARGUS</h1>
+    <div id="alert-popup" class="alert-popup">
+        <img src="crossw.png" id="alert-close" alt="alert-close">
+        <h2 id="alert-title">ALERT!</h2>
+        <img id="alert-image" alt="Alert image will appear here">
+        <p id="alert-message"></p>
+    </div>
+    <!-- Tabs -->
+    <div class="tab-container">
+        <div class="tab active" onclick="openTab('tab1')">Notifications</div>
+        <div class="tab" onclick="openTab('tab2')">Records</div>
+        <div class="tab contact-tab" onclick="openTab('tab3')">Contact Us</div> <!-- Right aligned tab -->
+    </div>
+
+    <!-- Tab Content -->
+    <div id="tab1" class="tab-content active">
+        <h2>Notifications</h2>
+        <p>This is the notification tab. Display recent notifications here.</p>
+    </div>
+
+    <div id="tab2" class="tab-content">
+        <h2>Records</h2>
+        <p>This is the records tab. Show past alerts or data here.</p>
+    </div>
+
+    <div id="tab3" class="tab-content">
+        <h2>Contact Us</h2>
+        <p>Contact information or form can go here.</p>
+    </div>
+
+
+    <!-- Javascript -->
+    <script src="script.js"></script>
+</body>
+</html>
