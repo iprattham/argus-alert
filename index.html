@@ -5,15 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>ARGUS</title>
+    <style>
+        /* Popup styles */
+        .alert-popup {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.7); /* Black background with transparency */
+            justify-content: center; /* Center the popup */
+            align-items: center; /* Center the popup */
+            z-index: 1000; /* Sit on top */
+        }
+
+        .alert-popup .popup-content {
+            background-color: white; /* White background */
+            padding: 20px; /* Some padding */
+            border-radius: 8px; /* Rounded corners */
+            text-align: center; /* Center text */
+        }
+
+        .alert-popup img {
+            max-width: 100%; /* Responsive image */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 10px; /* Space between image and text */
+        }
+
+        .close-button {
+            cursor: pointer; /* Pointer cursor on hover */
+            float: right; /* Align to the right */
+        }
+
+        .tab-container {
+            display: flex; /* Use flexbox for tabs */
+            justify-content: space-around; /* Space tabs evenly */
+            margin-top: 20px; /* Space above tabs */
+        }
+
+        .tab {
+            padding: 10px 20px; /* Space within tabs */
+            cursor: pointer; /* Pointer cursor on hover */
+            border: 1px solid #ccc; /* Border for tabs */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #f0f0f0; /* Light gray background */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .tab.active {
+            background-color: #d0d0d0; /* Darker gray for active tab */
+        }
+
+        .tab-content {
+            display: none; /* Hidden by default */
+            margin-top: 20px; /* Space above content */
+        }
+
+        .tab-content.active {
+            display: block; /* Show active tab content */
+        }
+    </style>
 </head>
 <body>
     <h1>ARGUS</h1>
+
+    <!-- Alert Popup -->
     <div id="alert-popup" class="alert-popup">
-        <img src="crossw.png" id="alert-close" alt="alert-close">
-        <h2 id="alert-title">ALERT!</h2>
-        <img id="alert-image" alt="Alert image will appear here">
-        <p id="alert-message"></p>
+        <div class="popup-content">
+            <img src="crossw.png" id="alert-close" alt="Close Alert" class="close-button">
+            <h2 id="alert-title">ALERT!</h2>
+            <img id="alert-image" alt="Alert image will appear here">
+            <p id="alert-message"></p>
+        </div>
     </div>
+
     <!-- Tabs -->
     <div class="tab-container">
         <div class="tab active" onclick="openTab('tab1')">Notifications</div>
@@ -36,7 +102,6 @@
         <h2>Contact Us</h2>
         <p>Contact information or form can go here.</p>
     </div>
-
 
     <!-- Javascript -->
     <script src="script.js"></script>
