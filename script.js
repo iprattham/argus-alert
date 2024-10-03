@@ -7,8 +7,9 @@ function showAlert(message, image) {
     // Set the alert message and image
     alertMessage.textContent = message;
     alertImage.src = image; // Update the src of the image
-    alertPopup.style.display = "flex";
+    alertPopup.style.display = "flex"; // Ensure popup is displayed
     alertPopup.classList.add('show'); // Add class for bounce-in animation
+    console.log("Alert popup displayed"); // Debug log
 
     // Automatically hide the alert after a few seconds (optional)
     // setTimeout(() => {
@@ -41,11 +42,13 @@ socket.on('alert', (data) => {
     console.log("Message received:", data); // Log the incoming message
 
     if (data.alert && data.image) { // Check if both alert and image are present
-        showAlert(data.alert, `data:image/jpeg;base64,${data.image}`); // Correctly format the image
+        console.log("Showing alert"); // Log when showing the alert
+        showAlert(data.alert, `data:image/jpeg;base64,${data.image}`);
     } else {
         console.error("Invalid data format:", data); // Log an error if the format is incorrect
     }
 });
+
 
 // Connection closed
 socket.on('disconnect', () => {
