@@ -10,7 +10,7 @@ function showAlert(message, image) {
     alertPopup.style.display = "flex";
     alertPopup.classList.add('show'); // Add class for bounce-in animation
 
-    // // Automatically hide the alert after a few seconds (optional)
+    // Automatically hide the alert after a few seconds (optional)
     // setTimeout(() => {
     //     alertPopup.style.display = "none";
     // }, 10000); // Adjust the time as needed (5000 ms = 5 seconds)
@@ -41,7 +41,7 @@ socket.on('alert', (data) => {
     console.log("Message received:", data); // Log the incoming message
 
     if (data.alert && data.image) { // Check if both alert and image are present
-        showAlert(data.alert, `data:image/jpeg;base64,${data.image}`);
+        showAlert(data.alert, `data:image/jpeg;base64,${data.image}`); // Correctly format the image
     } else {
         console.error("Invalid data format:", data); // Log an error if the format is incorrect
     }
