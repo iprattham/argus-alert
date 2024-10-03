@@ -7,12 +7,12 @@ function showAlert(message, image) {
     // Set the alert message and image
     alertMessage.textContent = message;
     alertImage.src = image; // Update the src of the image
-    alertPopup.style.display = "flex"
+    alertPopup.style.display = "flex";
     alertPopup.classList.add('show'); // Add class for bounce-in animation
 
     // // Automatically hide the alert after a few seconds (optional)
     // setTimeout(() => {
-    //     alertPopup.style.display = "none"
+    //     alertPopup.style.display = "none";
     // }, 10000); // Adjust the time as needed (5000 ms = 5 seconds)
 }
 
@@ -26,39 +26,38 @@ document.getElementById('alert-close').addEventListener('click', function() {
         alertPopup.style.display = 'none'; // Hide the popup
         alertPopup.classList.remove('hide'); // Remove the class for future use
     }, 500); // Match this duration to the CSS transition duration
-})
+});
 
-// Automatically connect to WebSocket server
-const socket = new WebSocket('ws://localhost:9000');
+// Automatically connect to Socket.IO server
+const socket = io('https://socket-test-auty.onrender.com'); // Use your Render URL here
 
 // Connection opened
-socket.onopen = () => {
-    console.log("Connected to WebSocket server.");
-};
+socket.on('connect', () => {
+    console.log("Connected to Socket.IO server.");
+});
 
-// Listen for messages
-socket.onmessage = function(event) {
-    console.log("Message received:", event.data); // Log the incoming message
-    const data = JSON.parse(event.data);
-    
+// Listen for alert messages
+socket.on('alert', (data) => {
+    console.log("Message received:", data); // Log the incoming message
+
     if (data.alert && data.image) { // Check if both alert and image are present
         showAlert(data.alert, `data:image/jpeg;base64,${data.image}`);
     } else {
         console.error("Invalid data format:", data); // Log an error if the format is incorrect
     }
-};
+});
 
 // Connection closed
-socket.onclose = () => {
-    console.log("Disconnected from WebSocket server.");
-};
+socket.on('disconnect', () => {
+    console.log("Disconnected from Socket.IO server.");
+});
 
 // Handle connection errors
-socket.onerror = (error) => {
-    console.log("WebSocket Error: ", error);
-};
+socket.on('error', (error) => {
+    console.log("Socket.IO Error: ", error);
+});
 
-// function to change tabs
+// Function to change tabs
 function openTab(tabName) {
     // Hide all tab content
     const tabContents = document.getElementsByClassName('tab-content');
@@ -78,6 +77,3 @@ function openTab(tabName) {
     // Add active class to the clicked tab
     event.currentTarget.classList.add('active');
 }
-
-
-
